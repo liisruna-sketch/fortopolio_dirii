@@ -1,0 +1,239 @@
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { margin: 0; font-family: "Segoe UI", Arial, sans-serif; line-height: 1.6; color: #12263a; background: white; }
+
+a:focus-visible, input:focus-visible, textarea:focus-visible, [tabindex]:focus-visible {
+  outline: 3px solid #f2a541;
+  outline-offset: 2px;
+}
+
+/* ---------- Sidebar tetap di kiri ---------- */
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 250px;
+  height: 100%;
+  padding: 30px 20px;
+  background: #12263a;
+  color: white;
+  overflow-y: auto;
+}
+.sidebar h2 { margin: 0 0 6px; font-family: Georgia, serif; }
+.sidebar p { margin: 0 0 24px; font-size: 14px; color: #b9c9d6; }
+.sidebar a { display: block; padding: 12px 10px; color: white; text-decoration: none; border-left: 3px solid transparent; transition: 0.3s; }
+.sidebar a:hover { background: #1f4260; border-left-color: #f2a541; }
+
+.main { margin-left: 250px; }
+.blok { padding: 48px 32px; scroll-margin-top: 0; }
+.abu { background: #eef2f5; }
+.blok h1 { margin-top: 0; font-family: Georgia, serif; }
+.blok h3 { font-family: Georgia, serif; }
+
+/* ---------- Portofolio: grid 3 kolom  ---------- */
+.marquee { overflow: hidden; padding: 16px 0 26px; -webkit-mask-image: linear-gradient(90deg, transparent, #000 5%, #000 95%, transparent); mask-image: linear-gradient(90deg, transparent, #000 5%, #000 95%, transparent); }
+.track { display: flex; width: max-content; }
+.track .item { flex: 0 0 300px; margin-right: 16px; height: 210px; }
+.track.jalan { animation: jalan 45s linear infinite; }
+.marquee:hover .track, .marquee:focus-within .track { animation-play-state: paused; }
+@keyframes jalan { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+@media (prefers-reduced-motion: reduce) { .marquee { overflow-x: auto; -webkit-mask-image: none; mask-image: none; } }
+.item {
+  position: relative;
+  flex: 1 1 30%;
+  height: 200px;
+  display: flex;
+  align-items: flex-end;
+  color: white;
+  border-radius: 6px;
+  overflow: hidden;
+}
+.overlay {
+  position: absolute;
+  top: 0; bottom: 0; left: 0; right: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-size: 15px;
+  background: rgba(18, 38, 58, 0.85);
+  opacity: 0;
+  transition: 0.5s ease;
+  z-index: 1;
+}
+.item:hover .overlay, .item:focus .overlay { opacity: 1; }
+
+/* Gambar sampul: simpan di folder gambar. Jika file belum ada, gradasi warna tampil. */
+
+.t1 { background: url('gambar/pf.jpeg') center/cover no-repeat, linear-gradient(135deg, #12263a, #0f8b8d); }
+.t2 { background: url('gambar/query.jpeg') center/cover no-repeat, linear-gradient(135deg, #0f8b8d, #7be0a4); }
+.t3 { background: url('gambar/erd.png') center/cover no-repeat, linear-gradient(135deg, #1f4260, #5b8bb0); }
+.t4 { background: url('gambar/sistem terintegritas.jpeg') center/cover no-repeat, linear-gradient(135deg, #0f8b8d, #7be0a4); }
+.t5 { background: url('gambar/UI-UX.jpeg') center/cover no-repeat, linear-gradient(135deg, #5b4fcf, #0f8b8d); }
+.t6 { background: url('gambar/dasarpemprograman.jpg') center/cover no-repeat, linear-gradient(135deg, #12263a, #8a3b5c); }
+
+.label { width: 100%; padding: 8px 12px; background: rgba(18, 38, 58, 0.65); font-size: 16px; font-weight: bold; }
+
+/* ---------- About ---------- */
+.about { display: flex; gap: 30px; align-items: center; }
+.avatar {
+  position: relative;
+  flex: none;
+  width: 150px; height: 150px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: #f2a541;
+  border: 4px solid #0f8b8d;
+  font: bold 2.4rem Georgia, serif;
+  color: #12263a;
+}
+/* Foto menutupi inisial jika gambar/foto.jpg tersedia */
+.avatar .foto {
+  position: absolute;
+  top: 0; bottom: 0; left: 0; right: 0;
+  border-radius: 50%;
+  background: url('gambar/una.jpeg') center/cover no-repeat;
+}
+
+/* ---------- Media sosial ---------- */
+.sosmed { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 14px; }
+.sosmed a { display: inline-flex; align-items: center; gap: 8px; padding: 8px 18px; border-radius: 22px; color: white; font-weight: 600; text-decoration: none; transition: transform 0.25s ease, box-shadow 0.25s ease; }
+.sosmed .ig { background: linear-gradient(45deg, #f09433, #dc2743, #bc1888); }
+.sosmed .fb { background: #1877f2; }
+.sosmed a:hover, .sosmed a:focus-visible { transform: translateY(-3px); box-shadow: 0 8px 16px rgba(18, 38, 58, 0.3); }
+
+/* ---------- Pendidikan ---------- */
+.card { background: white; padding: 20px; border-left: 4px solid #0f8b8d; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.12); max-width: 720px; }
+.card + .card { margin-top: 16px; }
+.card h3 { margin-top: 0; }
+.card p { margin: 6px 0 0; }
+
+/* ---------- Keahlian ---------- */
+.bar { background: #dde5ea; border-radius: 4px; }
+.bar .isi { background: #0f8b8d; color: white; padding: 2px 10px; border-radius: 4px; }
+
+.chips { display: flex; flex-wrap: wrap; gap: 10px; }
+.tooltip {
+  position: relative;
+  padding: 8px 16px;
+  background: white;
+  border: 1px solid #aab8c2;
+  border-radius: 20px;
+  cursor: default;
+}
+.tooltiptext {
+  visibility: hidden;
+  opacity: 0;
+  position: absolute;
+  bottom: calc(100% + 8px);
+  left: 50%;
+  transform: translateX(-50%);
+  width: max-content;
+  max-width: 200px;
+  padding: 6px 10px;
+  background: #12263a;
+  color: white;
+  font-size: 13px;
+  text-align: center;
+  border-radius: 5px;
+  transition: opacity 0.3s, visibility 0.3s;
+  z-index: 2;
+}
+.tooltip:hover .tooltiptext, .tooltip:focus .tooltiptext { visibility: visible; opacity: 1; }
+
+/* ---------- Form ---------- */
+form { max-width: 560px; }
+label { display: block; margin-top: 12px; font-weight: bold; }
+input, textarea {
+  width: 100%;
+  display: block;
+  padding: 12px 16px;
+  margin: 6px 0;
+  border: 1px solid #aab8c2;
+  border-radius: 5px;
+  font: inherit;
+  transition: 0.3s;
+}
+input:focus, textarea:focus { background: #dff3f3; outline: 2px solid #0f8b8d; }
+input[type=submit] { width: auto; margin-top: 16px; background: #0f8b8d; color: white; border: none; padding: 14px 32px; cursor: pointer; }
+input[type=submit]:hover { background: #0b6e70; }
+
+.footer { padding: 20px; text-align: center; background: #12263a; color: white; }
+
+/* ---------- Hobi ---------- */
+.hobi-grid { display: flex; flex-wrap: wrap; gap: 16px; }
+.hobi { flex: 1 1 260px; max-width: 360px; display: flex; align-items: center; gap: 18px; padding: 22px; background: white; border-left: 4px solid #f2a541; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.12); border-radius: 4px; transition: transform 0.3s ease, box-shadow 0.3s ease; }
+.hobi h3 { margin: 0 0 4px; }
+.hobi p { margin: 0; }
+.hobi .ikon { flex: none; width: 64px; height: 64px; display: grid; place-items: center; font-size: 2rem; background: #eef2f5; border-radius: 50%; animation: goyang 3s ease-in-out infinite; }
+.hobi:nth-child(2) .ikon { animation-delay: 0.6s; }
+.hobi:hover, .hobi:focus-visible { transform: translateY(-6px); box-shadow: 0 12px 22px rgba(0, 0, 0, 0.2); }
+.hobi:hover .ikon { animation: lompat 0.6s ease; background: #fdebd0; }
+@keyframes goyang { 0%, 100% { transform: rotate(-8deg); } 50% { transform: rotate(8deg); } }
+@keyframes lompat { 0%, 100% { transform: translateY(0) scale(1); } 40% { transform: translateY(-14px) scale(1.15); } 70% { transform: translateY(0) scale(0.95); } }
+
+/* ---------- Animasi ---------- */
+.sidebar { animation: masukKiri 0.8s cubic-bezier(.22,1,.36,1) both; }
+@keyframes masukKiri { from { transform: translateX(-100%); opacity: 0; } to { transform: none; opacity: 1; } }
+
+/* Muncul bertahap saat di-scroll (kelas .js dipasang oleh skrip) */
+.js .reveal { opacity: 0; transform: translateY(36px); transition: opacity 0.7s ease, transform 0.7s cubic-bezier(.22,1,.36,1); transition-delay: var(--d, 0s); }
+.js .reveal.tampil { opacity: 1; transform: none; }
+
+/* Garis di bawah judul memanjang */
+.js .blok h1::after { content: ""; display: block; width: 0; height: 4px; margin-top: 8px; background: #f2a541; border-radius: 2px; transition: width 0.8s 0.3s ease; }
+.js .blok.masuk h1::after { width: 70px; }
+
+/* Kotak portofolio terangkat saat disentuh kursor */
+.item { transition: transform 0.35s cubic-bezier(.22,1,.36,1), box-shadow 0.35s ease; }
+.item:hover, .item:focus-visible { transform: translateY(-8px) scale(1.02); box-shadow: 0 16px 30px rgba(18, 38, 58, 0.35); z-index: 3; }
+
+/* Foto profil melayang dan cincin berdenyut */
+.avatar { animation: melayang 4s ease-in-out infinite; }
+.avatar::after { content: ""; position: absolute; top: -4px; bottom: -4px; left: -4px; right: -4px; border-radius: 50%; border: 3px solid #0f8b8d; animation: denyut 2.4s ease-out infinite; pointer-events: none; }
+@keyframes melayang { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+@keyframes denyut { from { transform: scale(1); opacity: 0.7; } to { transform: scale(1.4); opacity: 0; } }
+
+/* Bar keahlian terisi dengan kilau */
+.bar .isi { overflow: hidden; white-space: nowrap; background: linear-gradient(90deg, #0f8b8d, #19b7ba, #0f8b8d); background-size: 200% 100%; transition: width 1.4s cubic-bezier(.22,1,.36,1); animation: kilau 3s linear infinite; }
+@keyframes kilau { from { background-position: 0 0; } to { background-position: -200% 0; } }
+
+/* Chip, kartu, tombol */
+.tooltip { transition: transform 0.25s ease, background 0.25s ease, color 0.25s ease, border-color 0.25s ease; }
+.tooltip:hover, .tooltip:focus { transform: translateY(-4px); background: #0f8b8d; color: white; border-color: #0f8b8d; }
+.card { transition: transform 0.3s ease, box-shadow 0.3s ease; }
+.card:hover { transform: translateX(8px); box-shadow: 0 8px 18px rgba(0, 0, 0, 0.18); }
+input[type=submit] { transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.3s; }
+input[type=submit]:hover { transform: translateY(-3px); box-shadow: 0 8px 16px rgba(15, 139, 141, 0.4); }
+
+/* Menu aktif mengikuti posisi scroll */
+.sidebar a.aktif { background: #1f4260; border-left-color: #f2a541; }
+
+/* ---------- Responsif ---------- */
+@media (max-width: 800px) {
+  .sidebar { position: static; width: 100%; height: auto; padding: 20px; }
+  .sidebar p { margin-bottom: 12px; }
+  .sidebar a { display: inline-block; padding: 8px 12px; border-left: 0; border-bottom: 3px solid transparent; }
+  .sidebar a:hover, .sidebar a.aktif { border-bottom-color: #f2a541; }
+  @keyframes masukKiri { from { transform: translateY(-100%); opacity: 0; } to { transform: none; opacity: 1; } }
+  .main { margin-left: 0; }
+  .about { flex-direction: column; text-align: center; }
+  .sosmed { justify-content: center; }
+}
+@media (max-width: 500px) {
+  .track .item { flex-basis: 250px; height: 190px; }
+  .blok { padding: 32px 16px; }
+}
+
+/* Layar sentuh: detail proyek selalu terlihat karena tidak ada hover */
+@media (hover: none) {
+  .overlay { opacity: 1; background: rgba(18, 38, 58, 0.55); justify-content: flex-start; padding-top: 14px; }
+  .label { position: relative; z-index: 2; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  * { transition: none !important; animation: none !important; }
+}
